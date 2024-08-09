@@ -1,4 +1,4 @@
-import { Tarefa } from '../../Models/Tarefa';
+import { Tarefa } from './../../Models/Tarefa';
 import { TaskService } from './../../services/task.service';
 import { Component, OnInit } from '@angular/core';
 import TaskItemComponent from '../task-item/task-item.component';
@@ -19,6 +19,18 @@ export class TasksComponent implements OnInit {
       next: (response) => (this.tarefas = response),
       error: (erro) => console.log(`Erro ao obter dados: ${erro}`),
       complete: () => console.log(`Dados recebidos com Sucesso!`),
+    });
+  }
+
+  deleteTask(tarefa: Tarefa) {
+    this.taskService.deleteTask(tarefa).subscribe({
+      next: () => {
+        this.tarefas = this.tarefas.filter((t) => t.id == tarefa.id);
+      },
+      error: (erro) => {
+        console.log(`Ops! Ocorreu um erro ao realizar a operação: ${erro}`);
+      },
+      complete: () => console.log(`Deleção realizada com sucesso!`),
     });
   }
 

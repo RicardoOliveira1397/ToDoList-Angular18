@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tarefa } from '../../Models/Tarefa';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,5 +12,10 @@ import { CommonModule } from '@angular/common';
 })
 export default class TaskItemComponent {
   @Input() itemTarefa!: Tarefa; //o sinal de ! indica que esta propriedade será definida antes do seu uso, mesmo que o typescript não perceba isso. Senão, é necessário inicializar com valor inicial
+  @Output() onDeleteTask = new EventEmitter<Tarefa>();
   faTimes = faTimes;
+
+  onDelete(tarefa: Tarefa) {
+    this.onDeleteTask.emit(tarefa);
+  }
 }

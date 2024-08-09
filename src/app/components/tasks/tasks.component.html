@@ -12,5 +12,8 @@
 </ul> -->
 
 @for (tarefa of tarefas; track tarefa.id) {
-<app-task-item [itemTarefa]="tarefa"></app-task-item>
+<app-task-item
+  [itemTarefa]="tarefa"
+  (onDeleteTask)="deleteTask($event)"
+></app-task-item>
 }
