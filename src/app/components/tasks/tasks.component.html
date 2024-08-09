@@ -1,0 +1,12 @@
+<!--
+    o for agora possui track que associa o item do index com o html, então temos uma coleção de html,
+    cada um com seu index... e por padrão temos outros acessos da coleção como:
+    $count, $first, $last, $even, $odd
+-->
+<ul>
+  @for (tarefa of tarefas; track tarefa.id; let idx = $index) {
+  <li>{{ tarefa.tarefa }}</li>
+  } @empty {
+  <li>Não há mais itens</li>
+  }
+</ul>
