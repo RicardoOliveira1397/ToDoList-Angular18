@@ -11,6 +11,7 @@
   }
 </ul> -->
 
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
 @for (tarefa of tarefas; track tarefa.id) {
 <app-task-item
   [itemTarefa]="tarefa"

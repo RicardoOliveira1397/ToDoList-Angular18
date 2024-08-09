@@ -2,11 +2,12 @@ import { Tarefa } from './../../Models/Tarefa';
 import { TaskService } from './../../services/task.service';
 import { Component, OnInit } from '@angular/core';
 import TaskItemComponent from '../task-item/task-item.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskItemComponent],
+  imports: [TaskItemComponent, AddTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -25,7 +26,7 @@ export class TasksComponent implements OnInit {
   deleteTask(tarefa: Tarefa) {
     this.taskService.deleteTask(tarefa).subscribe({
       next: () => {
-        this.tarefas = this.tarefas.filter((t) => t.id == tarefa.id);
+        this.tarefas = this.tarefas.filter((t) => t.id != tarefa.id);
       },
       error: (erro) => {
         console.log(`Ops! Ocorreu um erro ao realizar a operação: ${erro}`);
@@ -37,6 +38,14 @@ export class TasksComponent implements OnInit {
   toggleConluido(tarefa: Tarefa) {
     tarefa.concluido = !tarefa.concluido;
     this.taskService.updateTask(tarefa).subscribe();
+  }
+
+  addTask(novaTarefa: Tarefa) {
+    this.taskService.addtask(novaTarefa).subscribe({
+      next: (tarefa) => {
+        this.tarefas.push(tarefa);
+      },
+    });
   }
 
   //DEPRECATED
