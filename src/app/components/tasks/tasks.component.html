@@ -3,10 +3,14 @@
     cada um com seu index... e por padrão temos outros acessos da coleção como:
     $count, $first, $last, $even, $odd
 -->
-<ul>
+<!-- <ul>
   @for (tarefa of tarefas; track tarefa.id; let idx = $index) {
-  <li>{{ tarefa.tarefa }}</li>
+  <li>{{ tarefa.id }} - {{ tarefa.tarefa }}</li>
   } @empty {
   <li>Não há mais itens</li>
   }
-</ul>
+</ul> -->
+
+@for (tarefa of tarefas; track tarefa.id) {
+<app-task-item [itemTarefa]="tarefa"></app-task-item>
+}

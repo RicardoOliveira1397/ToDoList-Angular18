@@ -1,11 +1,12 @@
 import { Tarefa } from '../../Models/Tarefa';
 import { TaskService } from './../../services/task.service';
 import { Component, OnInit } from '@angular/core';
+import TaskItemComponent from '../task-item/task-item.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [],
+  imports: [TaskItemComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
