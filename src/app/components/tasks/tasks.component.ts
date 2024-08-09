@@ -34,6 +34,11 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  toggleConluido(tarefa: Tarefa) {
+    tarefa.concluido = !tarefa.concluido;
+    this.taskService.updateTask(tarefa).subscribe();
+  }
+
   //DEPRECATED
   // ngOnInit(): void {
   //   this.taskService.getTasks().subscribe(

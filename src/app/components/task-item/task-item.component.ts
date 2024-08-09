@@ -13,9 +13,15 @@ import { CommonModule } from '@angular/common';
 export default class TaskItemComponent {
   @Input() itemTarefa!: Tarefa; //o sinal de ! indica que esta propriedade será definida antes do seu uso, mesmo que o typescript não perceba isso. Senão, é necessário inicializar com valor inicial
   @Output() onDeleteTask = new EventEmitter<Tarefa>();
+  @Output() onToggleConcluido = new EventEmitter<Tarefa>();
+  
   faTimes = faTimes;
 
   onDelete(tarefa: Tarefa) {
     this.onDeleteTask.emit(tarefa);
+  }
+
+  onToggle(tarefa: Tarefa) {
+    this.onToggleConcluido.emit(tarefa);
   }
 }
