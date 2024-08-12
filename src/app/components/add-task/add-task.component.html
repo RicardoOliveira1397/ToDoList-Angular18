@@ -1,4 +1,11 @@
-<form (ngSubmit)="onSubmit()">
+@if (mostrarAddTarefa){
+<app-button
+  text="Fechar"
+  color="red"
+  (btnClick)="alteraVisualizacao(false)"
+></app-button>
+
+<form (ngSubmit)="onSubmit()" class="add-form">
   <div>
     <label for="text">Tarefa</label>
     <input
@@ -32,3 +39,10 @@
 
   <input type="submit" value="Salvar tarefa" class="btn btn-block mb-4" />
 </form>
+}@else {
+<app-button
+  text="Adicionar Tarefa"
+  color="green"
+  (btnClick)="alteraVisualizacao(true)"
+></app-button>
+}
