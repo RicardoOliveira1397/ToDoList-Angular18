@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tarefa } from '../Models/Tarefa';
 
@@ -9,7 +9,7 @@ import { Tarefa } from '../Models/Tarefa';
 export class TaskService {
   private apiUrl = 'http://localhost:3000/tasks';
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getTasks(): Observable<Tarefa[]> {
     return this.http.get<Tarefa[]>(this.apiUrl);

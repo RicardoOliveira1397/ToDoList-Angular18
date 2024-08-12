@@ -1,6 +1,6 @@
 import { Tarefa } from './../../Models/Tarefa';
 import { TaskService } from './../../services/task.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import TaskItemComponent from '../task-item/task-item.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 
@@ -13,7 +13,8 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 })
 export class TasksComponent implements OnInit {
   tarefas: Tarefa[] = [];
-  constructor(private taskService: TaskService) {}
+  //constructor(private taskService: TaskService) { }
+  private taskService = inject(TaskService);
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe({
